@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Carefully</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: white;
+        text-align: center;
+        padding: 40px 15px;
+        overflow: hidden;
+    }
+    h2 {
+        margin-bottom: 30px;
+    }
+    .btn {
+        padding: 18px;
+        font-size: 20px;
+        border-radius: 10px;
+        border: none;
+        width: 85%;
+        max-width: 300px;
+        margin: 15px auto;
+        display: block;
+    }
+    #yes {
+        background: #ff0055;
+        color: white;
+    }
+    #no {
+        background: #444;
+        color: #ccc;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #msg {
+        margin-top: 30px;
+        font-size: 20px;
+        color: #ffcc00;
+        min-height: 30px;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>💖 Do You Love Me?</h2>
+
+<button id="yes" class="btn" onclick="yesClick()">❤️ I Love You</button>
+
+<button id="no" class="btn">😒 No</button>
+
+<p id="msg"></p>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const msg = document.getElementById("msg");
+
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+
+        msg.innerText = "😜 Catch me if you can!";
+        if (navigator.vibrate) navigator.vibrate(100);
+    }
+
+    noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        moveButton();
+    });
+
+    noBtn.addEventListener("mouseover", moveButton); // for laptop also
+
+    function yesClick() {
+        document.body.style.background = "#ff0055";
+        msg.innerHTML = "😍 You clicked <b>I Love You</b><br>";
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+    }
+</script>
+
+</body>
+</html>
